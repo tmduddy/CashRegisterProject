@@ -8,7 +8,7 @@
 <body>
 <div class="buttonContainer">
 <?php
-	fopen('/Applications/XAMPP/xamppfiles/htdocs/TestEnviron/combos.txt', 'r');
+	fopen('/Applications/XAMPP/xamppfiles/htdocs/CashRegisterProject/CashReg/txt/combos.txt', 'r');
 	fopen('/Applications/XAMPP/xamppfiles/htdocs/TestEnviron/comboprice.txt', 'r');
 
 	$comboLabelFile = '/Applications/XAMPP/xamppfiles/htdocs/TestEnviron/combos.txt';
