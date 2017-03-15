@@ -8,13 +8,16 @@
 <body>
 <div class="buttonContainer">
 <?php
-	fopen('/Applications/XAMPP/xamppfiles/htdocs/CashRegisterProject/CashReg/txt/combos.txt', 'r');
-	fopen('/Applications/XAMPP/xamppfiles/htdocs/TestEnviron/comboprice.txt', 'r');
 
-	$comboLabelFile = '/Applications/XAMPP/xamppfiles/htdocs/TestEnviron/combos.txt';
+    $pathToTxtFiles = '/Applications/XAMPP/xamppfiles/htdocs/CashRegisterProject/txt_files/';
+
+	fopen($pathToTxtFiles . 'combos.txt', 'r');
+	fopen($pathToTxtFiles . 'comboprice.txt', 'r');
+
+	$comboLabelFile = $pathToTxtFiles . 'combos.txt';
 	$comboLabels = file($comboLabelFile, FILE_IGNORE_NEW_LINES);
 
-	$comboPriceFile = '/Applications/XAMPP/xamppfiles/htdocs/TestEnviron/comboprice.txt';
+	$comboPriceFile = $pathToTxtFiles . 'comboprice.txt';
 	$comboPrices = file($comboPriceFile, FILE_IGNORE_NEW_LINES);
 
     $combo = array_combine($comboPrices, $comboLabels);
@@ -34,7 +37,7 @@
                 <formset>
 HERE;
                     for($i = 0; $i < sizeof($prices); $i++) {
-                        print "<input type='checkbox' id=' (str) $i+1' class = 'foodButton' value='$prices[1][$i]'>";
+                        print "<input type='checkbox' id=' (str) $i+1' class = 'foodButton comboButton' value='$prices[1][$i]'>";
                         print $names[$i];
                         print "<br>";
                     } // end for()
@@ -49,6 +52,10 @@ HERE;
 
 	} // end printComboButtons()
 
+
+    function printFoodButtons(){
+
+    }
 	printComboButtons($combo);
 
 ?>
