@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="jquery-3.2.0.min.js" charset="UTF-8"></script>
+    <script>
+
+        var foodButtons = document.getElementsByClassName('foodButton');
+
+        function sayHello()
+        {
+            $('#foodButton').text('Hi there!');
+        }
+        //wait DOM loaded
+
+        foodButtons.addEventListener('click', function() {
+            alert('Hello world');
+        }, false);
+
+        foodButtons.addEventListener('click', sayHello());
+
+    </script>
+
 <title>Cash Register</title>
 <link rel="stylesheet" type="text/CSS" href="cash_reg.css">
 </head>
 
 <body>
+
+<div class="container">
 <div class="buttonContainer">
 <?php
 
@@ -24,43 +45,41 @@
 
     // $combo is an array of the form [$price => $ Name]
 
-	function printComboButtons($combos) {
+
+function printComboButtons($combos) {
 	    $prices = array();
         $names = array();
 	    foreach($combos as $price => $name){
 	        array_push($prices, $price);
 	        array_push($names, $name);
         } // end foreach()
-        echo <<<HERE
-            <div class='comboContainer'>
-			<form action='' method='post'>
-                <formset>
-HERE;
-                    for($i = 0; $i < sizeof($prices); $i++) {
-                        print "<input type='checkbox' id=' (str) $i+1' class = 'foodButton comboButton' value='$prices[1][$i]'>";
-                        print $names[$i];
-                        print "<br>";
-                    } // end for()
-        echo <<<HERE
-                </formset>
-            </form>
 
-		</div>
+        $nums = array("combo1", "combo2", "combo3", "combo4", "combo5", "combo6", "combo7", "combo8", "combo9", "combo10");
 
 
-HERE;
+        for($i = 0; $i < sizeof($prices); $i++) {
+            print "<div id=$names[$i] class='foodButton'>";
+            print $names[$i];
+            print "</div>";
+            print "<br>";
+        } // end for()
+
+        print "</div>";
 
 	} // end printComboButtons()
 
 
-    function printFoodButtons(){
+//    function printFoodButtons(){
+//
+//    }
 
-    }
 	printComboButtons($combo);
 
 ?>
 </div> <!-- End buttonContainer div -->
 
-<div class="orderContainer">
+<div id = "orderContainer" class="orderContainer">
 Your orders will be printed here.
 </div>
+
+</div> <!-- end container div -->
