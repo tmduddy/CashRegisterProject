@@ -4,19 +4,15 @@
     <script src="jquery-3.2.0.min.js" charset="UTF-8"></script>
     <script>
 
-        var foodButtons = document.getElementsByClassName('foodButton');
+        window.onload=function(){
+            var foodButton = document.getElementById("combo1");
+            foodButton.addEventListener("click", hideDetails, false);
 
-        function sayHello()
-        {
-            $('#foodButton').text('Hi there!');
         }
-        //wait DOM loaded
 
-        foodButtons.addEventListener('click', function() {
-            alert('Hello world');
-        }, false);
-
-        foodButtons.addEventListener('click', sayHello());
+        function hideDetails() {
+            $('#orderDetails').toggle();
+        }
 
     </script>
 
@@ -28,6 +24,10 @@
 
 <div class="container">
 <div class="buttonContainer">
+
+<div id="orderDetails" class="orderDetails">
+    <p> nothing to see here yet.</p>
+</div>
 <?php
 
     $pathToTxtFiles = '/Applications/XAMPP/xamppfiles/htdocs/CashRegisterProject/txt_files/';
@@ -38,8 +38,17 @@
 	$comboLabelFile = $pathToTxtFiles . 'combos.txt';
 	$comboLabels = file($comboLabelFile, FILE_IGNORE_NEW_LINES);
 
-	$comboPriceFile = $pathToTxtFiles . 'comboprice.txt';
-	$comboPrices = file($comboPriceFile, FILE_IGNORE_NEW_LINES);
+	$comboPrices = array(
+                        6.99,
+                        7.99,
+                        8.99,
+                        7.89,
+                        5.99,
+                        6.87,
+                        6.88,
+                        6.89,
+                        7.79,
+                        5.59);
 
     $combo = array_combine($comboPrices, $comboLabels);
 
@@ -57,28 +66,23 @@ function printComboButtons($combos) {
         $nums = array("combo1", "combo2", "combo3", "combo4", "combo5", "combo6", "combo7", "combo8", "combo9", "combo10");
 
 
-        for($i = 0; $i < sizeof($prices); $i++) {
-            print "<div id=$names[$i] class='foodButton'>";
+        for($i = 0; $i < sizeof($nums); $i++) {
+            print "<div id=$nums[$i] class='foodButton'>";
             print $names[$i];
             print "</div>";
             print "<br>";
         } // end for()
 
-        print "</div>";
+
 
 	} // end printComboButtons()
 
-
-//    function printFoodButtons(){
-//
-//    }
-
 	printComboButtons($combo);
 
-?>
+?>    <!-- end PHP  -->
 </div> <!-- End buttonContainer div -->
 
-<div id = "orderContainer" class="orderContainer">
+<div id="orderContainer" class="orderContainer">
 Your orders will be printed here.
 </div>
 
